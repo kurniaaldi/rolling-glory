@@ -3,8 +3,10 @@ import axios from "axios";
 
 const API_BASE = "https://recruitment.dev.rollingglory.com/api/v2/gifts";
 
-export const getProducts = async () => {
-  const response = await axios.get(`${API_BASE}?page[number]=1&page[size]=6`);
+export const getProducts = async ({ page }: { page: number }) => {
+  const response = await axios.get(
+    `${API_BASE}?page[number]=${page || 1}&page[size]=6`,
+  );
   return response.data;
 };
 

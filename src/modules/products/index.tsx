@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import ProductCard from "@/components/productCard";
 import { Product } from "@/interface";
+import Pagination from "@/components/pagination";
+import { getProducts } from "@/utils/api";
 
 interface Meta {
   totalItems: number;
@@ -42,17 +44,28 @@ interface ModuleProducts {
 export default function ModuleProduct({ data, meta }: ModuleProducts) {
   const [products, setProducts] = useState<Product[]>([]);
   const [sortBy, setSortBy] = useState<"newest" | "rating">("newest");
+  const [currentPage, setCurrentPage] = useState(meta.currentPage);
   const [filters, setFilters] = useState({
     minRating: 0,
     inStock: false,
   });
-  console.log(data, meta);
 
   useEffect(() => {
     if (data) {
       setProducts(data);
     }
   }, [data]);
+
+  const handlePageChange = async (page: number) => {
+    console.log(page);
+
+    if (page >= 1 && page <= meta.totalPages && page !== currentPage) {
+      const data = await getProducts({ page });
+      setProducts(data.data);
+
+      setCurrentPage(page);
+    }
+  };
 
   const sortProducts = (products: Product[], type: string) => {
     return [...products].sort((a, b) => {
@@ -133,6 +146,13 @@ export default function ModuleProduct({ data, meta }: ModuleProducts) {
           {filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product.attributes} />
           ))}
+          <div className="col-span-1 md:col-span-2 lg:col-span-3">
+            <Pagination
+              meta={meta}
+              currentPage={currentPage}
+              handlePageChange={(page: number) => handlePageChange(page)}
+            />
+          </div>
         </div>
       </div>
     </div>
