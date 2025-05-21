@@ -2,43 +2,9 @@
 
 import { useEffect, useState } from "react";
 import ProductCard from "@/components/productCard";
+import { ApiResponse, Product } from "@/interface";
 
-interface ProductAttributes {
-  id: number;
-  name: string;
-  points: number;
-  stock: number;
-  images: string[];
-  isNew: number;
-  rating: number;
-  numOfReviews: number;
-  isWishlist: number;
-  slug: string;
-  description: string;
-}
-
-interface Product {
-  id: string;
-  type: string;
-  attributes: ProductAttributes;
-}
-
-interface ApiResponse {
-  meta: {
-    totalItems: number;
-    currentPage: number;
-    itemPerPage: number;
-    totalPages: number;
-  };
-  data: Product[];
-  links: {
-    self: string;
-    next: string;
-    last: string;
-  };
-}
-
-export default function Product() {
+export default function ModuleProduct() {
   const [products, setProducts] = useState<Product[]>([]);
   const [sortBy, setSortBy] = useState<"newest" | "rating">("newest");
   const [filters, setFilters] = useState({
