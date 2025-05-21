@@ -23,7 +23,7 @@ export default function Navbar() {
         scrolled ? "bg-white text-black shadow-md" : "bg-transparent text-white"
       }`}
     >
-      <Link href="/" className="navbar-brand">
+      <Link href="/">
         <img src="/assets/logo.png" alt="Logo" />
       </Link>
     </nav>

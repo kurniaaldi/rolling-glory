@@ -27,14 +27,11 @@ interface GiftAttributes {
   isWishlist: number;
 }
 
-// Gift data object
 interface GiftData {
   id: string;
   type: string;
   attributes: GiftAttributes;
 }
-
-// Full response structure
 
 interface ModuleProducts {
   meta: Meta;
@@ -57,8 +54,6 @@ export default function ModuleProduct({ data, meta }: ModuleProducts) {
   }, [data]);
 
   const handlePageChange = async (page: number) => {
-    console.log(page);
-
     if (page >= 1 && page <= meta.totalPages && page !== currentPage) {
       const data = await getProducts({ page });
       setProducts(data.data);

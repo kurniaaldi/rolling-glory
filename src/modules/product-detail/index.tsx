@@ -8,6 +8,7 @@ import SpecialIcons from "@/components/specialIcon";
 import StockStatus from "@/components/stockStatus";
 import Carousell from "@/components/carousel";
 import { Product } from "@/interface";
+import Link from "next/link";
 
 interface ModuleProductDetail {
   data: Product;
@@ -35,8 +36,14 @@ export default function ProductDetail({ data }: ModuleProductDetail) {
 
   return (
     <div className="container mx-auto px-4 py-8 relative">
+      <div className="text-[#262626] text-sm flex items-center gap-2">
+        <Link href="/">
+          <p>List Product </p>
+        </Link>
+        <span>{">"}</span>
+        <p>{product?.attributes?.name}</p>
+      </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Product Image */}
         <div className="relative w-full items-center justify-center">
           <Carousell images={product?.attributes?.images} />
 
@@ -47,7 +54,6 @@ export default function ProductDetail({ data }: ModuleProductDetail) {
           />
         </div>
 
-        {/* Product Info */}
         <div className="space-y-6">
           <div className="flex justify-between items-start">
             <h1 className="text-3xl font-bold">{product?.attributes?.name}</h1>
