@@ -14,7 +14,6 @@ export default function ProductDetail() {
   const params = useParams();
   const { slug } = params;
   const [product, setProduct] = useState<any>(null);
-  const [isInWishlist, setIsInWishlist] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -33,11 +32,6 @@ export default function ProductDetail() {
 
     fetchProduct();
   }, [slug]);
-
-  const toggleWishlist = () => {
-    setIsInWishlist(!isInWishlist);
-    // Implementasi logic API call untuk update wishlist disini
-  };
 
   if (loading) {
     return <div className="container mx-auto px-4 py-8">Loading...</div>;
@@ -60,14 +54,14 @@ export default function ProductDetail() {
         <meta property="og:image" content={product?.attributes?.image} />
       </Head>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Product Image */}
-          <div className="relative">
+          <div className="relative w-full items-center justify-center">
             <img
               src={product?.attributes?.images?.[0]}
               alt={product?.attributes?.name}
-              className="w-full h-96 object-contain rounded-lg border"
+              className="w-[414px] object-contain mx-auto"
             />
 
             <SpecialIcons
@@ -83,53 +77,83 @@ export default function ProductDetail() {
               <h1 className="text-3xl font-bold">
                 {product?.attributes?.name}
               </h1>
-              <button
-                onClick={toggleWishlist}
-                className="p-2 hover:text-red-500 transition-colors"
-              >
-                {isInWishlist ? "❤️" : "🤍"}
-              </button>
             </div>
 
             <div className="space-y-2">
-              <RatingStars rating={product?.attributes?.rating} />
-              <StockStatus stock={product?.attributes?.stock} />
-              <p className="text-2xl font-semibold">
-                Rp {product?.attributes?.points}
-              </p>
+              <div className="flex items-center gap-2">
+                <RatingStars rating={product?.attributes?.rating} />
+                <p className="text-xs text-gray-400">
+                  {product?.attributes?.numOfReviews} reviews
+                </p>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <img src="./assets/point.svg" />
+                <p className="text-2xl text-[#74B71B]">
+                  {product?.attributes?.points} Poins
+                </p>
+                <StockStatus stock={product?.attributes?.stock} />
+              </div>
             </div>
 
             <div className="prose max-w-none">
-              <h3 className="text-xl font-semibold mb-2">Description</h3>
-              <p>{product?.attributes?.description}</p>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: product?.attributes?.info,
+                }}
+              />
             </div>
 
-            {/* Specifications */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="p-4 bg-gray-50 rounded-lg">
-                <h4 className="font-semibold mb-2">Details</h4>
-                <ul className="space-y-1">
-                  <li>Category: {product?.attributes?.category}</li>
-                  <li>Weight: {product?.attributes?.weight} kg</li>
-                  <li>Dimensions: {product?.attributes?.dimensions}</li>
-                </ul>
-              </div>
-
-              <div className="p-4 bg-gray-50 rounded-lg">
-                <h4 className="font-semibold mb-2">
-                  Reviews ({product?.attributes?.reviewCount})
-                </h4>
-                <p>Average Rating: {product?.attributes?.rating}/5</p>
+            <div className="flex flex-col items-start gap-2">
+              <p className="text-[#838EAB]">Jumlah</p>
+              <div className="flex items-center justify-center">
+                <button className="w-8 h-9 bg-[#f2f2f4] text-[#525F7F] font-bold text-xl">
+                  -
+                </button>
+                <div className="w-8 h-9 bg-white text-center flex items-center justify-center">
+                  1
+                </div>
+                <button className="w-8 h-9 bg-[#f2f2f4] text-[#525F7F] font-bold text-xl">
+                  +
+                </button>
               </div>
             </div>
 
-            <button
-              className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors"
-              disabled={product?.attributes?.stock === 0}
-            >
-              {product?.attributes?.stock > 0 ? "Add to Cart" : "Sold Out"}
-            </button>
+            <div className="w-full flex items-center gap-4 relative z-10">
+              {product?.attributes?.isWishlist ? (
+                <div className="cursor-pointer z-30">
+                  <img src="./assets/like.svg" className="w-14" />
+                </div>
+              ) : (
+                <div className="cursor-pointer z-30">
+                  <img src="./assets/unlike.svg" className="w-14" />
+                </div>
+              )}
+              <button
+                className="bg-[#006A4E] w-36 h-11 cursor-pointer text-white py-3 px-6 rounded-full hover:opacity-95 transition-colors"
+                disabled={product?.attributes?.stock === 0}
+              >
+                Reedem
+              </button>
+              <button className="bg-white w-36 h-11 cursor-pointer text-[#74B71B] border border-[#74B71B] py-3 px-6 rounded-full hover:bg-gray-100 transition-colors">
+                {product?.attributes?.stock > 0 ? "Add to Cart" : "Sold Out"}
+              </button>
+            </div>
           </div>
+        </div>
+        <div className="h-full mt-10">
+          <div className="h-12 w-40 border border-[#74B71B] border-b-4 border-t-0 border-l-0 border-r-0">
+            <p className="text-base text-[#74B71B]">Info produk</p>
+          </div>
+          <hr className="w-full border-[#D8D8D8]" />
+          <div className="my-8">
+            <p className="text-xl text-[#006A4E]">Rincian</p>
+          </div>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: product?.attributes?.description,
+            }}
+          />
         </div>
       </div>
     </>

@@ -17,7 +17,7 @@ function Layout(props: Props) {
       <Navbar />
       <main className="pt-16 relative w-full h-full min-h-screen">
         {children}
-        <div className="absolute bottom-0 left-0 h-1/2 main-layout w-full" />
+        <div className="absolute bottom-0 left-0 h-1/2 main-layout w-full z-0" />
       </main>
       <Footer />
     </>
