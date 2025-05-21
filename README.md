@@ -70,4 +70,11 @@ SEO telah dioptimalkan melalui:
 
 1. Clone repo
 2. `npm install`
-3. `npm run dev`
+3. create file .env
+
+# .env
+
+NEXT_PUBLIC_BASE_URL_CLIENT=http://localhost:3000 (change url sesuai dengan hostingan)
+NEXT_PUBLIC_BASE_URL_API=https://recruitment.dev.rollingglory.com/api/v2/gifts
+
+4. `npm run dev`
