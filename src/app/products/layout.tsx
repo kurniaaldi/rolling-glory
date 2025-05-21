@@ -1,7 +1,13 @@
 import Navbar from "@/components/navbar";
+import { Metadata } from "next";
 import React, { ReactNode } from "react";
 
 type Props = { children: ReactNode };
+
+export const metadata: Metadata = {
+  title: "Rolling Glory - Product List",
+  description: "List of products from Rolling Glory",
+};
 
 function Layout(props: Props) {
   const { children } = props;

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Head from "next/head";
 import ProductCard from "@/components/productCard";
 
 interface ProductAttributes {
@@ -80,26 +79,39 @@ export default function Home() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <Head>
-        <title>Rolling Glory - Product List</title>
-        <meta
-          name="description"
-          content="List of products from Rolling Glory"
-        />
-      </Head>
+      <div className="grid grid-cols-12 gap-16 mb-5">
+        <div className="col-span-3 flex flex-col gap-4 w-full">
+          <div className="w-full flex items-center justify-between h-10">
+            <p className="text-[#3C3C3F] text-[17px] font-bold">Filter</p>
+          </div>
+          <hr className="w-full border-[#D8D8D8]" />
+        </div>
+        <div className="col-span-9 flex flex-col gap-4 w-full">
+          <div className="w-full flex items-center justify-between h-10">
+            <p className="text-[#3C3C3F] text-[17px] font-bold">Product List</p>
+            <div className="flex items-center gap-4">
+              <label className="text-[#888888] text-[17px]">Urutkan</label>
+
+              <select
+                onChange={(e) =>
+                  setSortBy(e.target.value as "newest" | "rating")
+                }
+                className="p-2 border border-[#888888] text-[#888888] w-40 rounded-full"
+              >
+                <option value="newest">Terbaru</option>
+                <option value="rating">Ulasan Terbaik</option>
+              </select>
+            </div>
+          </div>
+          <hr className="w-full border-[#D8D8D8]" />
+        </div>
+      </div>
 
       <div className="grid grid-cols-12 gap-16">
         <div className="mb-6 space-y-4 col-span-3">
-          <select
-            onChange={(e) => setSortBy(e.target.value as "newest" | "rating")}
-            className="w-full p-2 border rounded"
-          >
-            <option value="newest">Terbaru</option>
-            <option value="rating">Ulasan Terbaik</option>
-          </select>
-
-          <div className="flex gap-4">
-            <label className="flex items-center gap-2">
+          <div className="flex flex-col gap-4 border border-[#D8D8D8] rounded p-4">
+            <label className="flex items-center justify-between gap-2 text-[#888888]">
+              Rating 4+
               <input
                 type="checkbox"
                 onChange={(e) =>
@@ -110,10 +122,10 @@ export default function Home() {
                 }
                 className="w-4 h-4"
               />
-              Rating 4+
             </label>
 
-            <label className="flex items-center gap-2">
+            <label className="flex items-center justify-between gap-2 text-[#888888]">
+              Stok Tersedia
               <input
                 type="checkbox"
                 onChange={(e) =>
@@ -121,7 +133,6 @@ export default function Home() {
                 }
                 className="w-4 h-4"
               />
-              Stok Tersedia
             </label>
           </div>
         </div>
