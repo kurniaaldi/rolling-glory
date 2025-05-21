@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 
-const API_BASE = "https://recruitment.dev.rollingglory.com/api/v2/gifts";
+const API_BASE = process.env.NEXT_PUBLIC_BASE_URL_API;
 
 export const getProducts = async ({ page }: { page: number }) => {
   const response = await axios.get(

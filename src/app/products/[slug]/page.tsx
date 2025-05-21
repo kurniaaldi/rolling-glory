@@ -16,6 +16,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: data?.data?.attributes?.name,
     description: data?.data?.attributes?.description,
+    openGraph: {
+      title: data?.data?.attributes?.name,
+      description: data?.data?.attributes?.description,
+      images: [
+        {
+          url: data?.data?.attributes?.images?.[0],
+          width: 1200,
+          height: 630,
+          alt: data?.data?.attributes?.name,
+        },
+      ],
+      type: "website",
+      url: `${process.env.NEXT_PUBLIC_BASE_URL_CLIENT}/${(await params).slug}`,
+    },
   };
 }
 

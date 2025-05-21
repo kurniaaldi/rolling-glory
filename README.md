@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rolling Glory Frontend Web Developer Test
 
-## Getting Started
+## 📦 Project Overview
 
-First, run the development server:
+A simple web application that displays a list of products and their details using data from a public API.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This application is built using **Next.js (App Router)** and **React 19**, with full support for filtering, sorting, responsive design, and SEO meta tag integration.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- ✅ Product listing & detail page
+- ✅ Rating stars with 0.5 precision
+- ✅ Stock status indicators (In Stock, Stock < 5, Sold Out)
+- ✅ Special icons (New, Best Seller, Hot Item)
+- ✅ Wishlist functionality (add/remove)
+- ✅ Sort products (Newest, Rating)
+- ✅ Filter products (Rating 4+, In Stock)
+- ✅ SEO meta tags for product detail pages
+- ✅ Responsive design for mobile & desktop
+- ✅ Server-side rendering for product detail (SEO optimized)
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🧱 Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Tech                | Reason                                                       |
+| ------------------- | ------------------------------------------------------------ |
+| **Next.js (React)** | Framework pilihan utama modern web, SSR dan CSR siap pakai.  |
+| **Tailwind CSS**    | Utility-first styling dengan produktivitas tinggi.           |
+| **Axios**           | Untuk HTTP request yang simpel dan konsisten.                |
+| **TypeScript**      | Type safety, autocompletion, dan maintainability lebih baik. |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## ⚙️ Local Setup Instructions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Setup
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Clone repo
+2. `npm install`
+3. `npm run dev`
