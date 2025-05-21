@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import ProductCard from "@/components/productCard";
 import { Product } from "@/interface";
 import Pagination from "@/components/pagination";
-import { getProducts } from "@/utils/api";
+import { getProducts, postProductWishlist } from "@/utils/api";
 
 interface Meta {
   totalItems: number;
@@ -52,6 +52,18 @@ export default function ModuleProduct({ data, meta }: ModuleProducts) {
       setProducts(data);
     }
   }, [data]);
+
+  const handleWishlist = async (id: number | string) => {
+    try {
+      const response = await postProductWishlist(id);
+      if (response) {
+        const data = await getProducts({ page: currentPage });
+        setProducts(data.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handlePageChange = async (page: number) => {
     if (page >= 1 && page <= meta.totalPages && page !== currentPage) {
@@ -139,7 +151,11 @@ export default function ModuleProduct({ data, meta }: ModuleProducts) {
 
         <div className="col-span-9 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product.attributes} />
+            <ProductCard
+              key={product.id}
+              product={product.attributes}
+              handleWishlist={(id) => handleWishlist(id)}
+            />
           ))}
           <div className="col-span-1 md:col-span-2 lg:col-span-3">
             <Pagination

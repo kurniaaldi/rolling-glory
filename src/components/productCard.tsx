@@ -17,9 +17,13 @@ interface ProductCardProps {
     isWishlist: number;
     slug: string;
   };
+  handleWishlist: (id: number | string) => void;
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({
+  product,
+  handleWishlist,
+}: ProductCardProps) {
   const [hover, setHover] = useState<number | null>();
   return (
     <div
@@ -74,11 +78,17 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
         </div>
         {product?.isWishlist ? (
-          <div className="cursor-pointer z-30">
+          <div
+            onClick={() => handleWishlist(product.id)}
+            className="cursor-pointer z-30"
+          >
             <img src="./assets/like.svg" className="w-14" />
           </div>
         ) : (
-          <div className="cursor-pointer z-30">
+          <div
+            onClick={() => handleWishlist(product.id)}
+            className="cursor-pointer z-30"
+          >
             <img src="./assets/unlike.svg" className="w-14" />
           </div>
         )}

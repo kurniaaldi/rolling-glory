@@ -9,6 +9,7 @@ import StockStatus from "@/components/stockStatus";
 import Carousell from "@/components/carousel";
 import { Product } from "@/interface";
 import Link from "next/link";
+import { getProductDetail, postProductWishlist } from "@/utils/api";
 
 interface ModuleProductDetail {
   data: Product;
@@ -25,6 +26,18 @@ export default function ProductDetail({ data }: ModuleProductDetail) {
     }
     setLoading(false);
   }, [data]);
+
+  const handleWishlist = async (id: number | string) => {
+    try {
+      const response = await postProductWishlist(id);
+      if (response) {
+        const data = await getProductDetail(id);
+        setProduct(data.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   if (loading) {
     return <div className="container mx-auto px-4 py-8">Loading...</div>;
@@ -101,11 +114,17 @@ export default function ProductDetail({ data }: ModuleProductDetail) {
 
           <div className="w-full flex items-center gap-4 relative z-10">
             {product?.attributes?.isWishlist ? (
-              <div className="cursor-pointer z-30">
+              <div
+                onClick={() => handleWishlist(product.id)}
+                className="cursor-pointer z-30"
+              >
                 <img src="/assets/like.svg" className="h-11" />
               </div>
             ) : (
-              <div className="cursor-pointer z-30">
+              <div
+                onClick={() => handleWishlist(product.id)}
+                className="cursor-pointer z-30"
+              >
                 <img src="/assets/unlike.svg" className="h-11" />
               </div>
             )}

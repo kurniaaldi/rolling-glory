@@ -14,3 +14,8 @@ export const getProductDetail = async (id: any) => {
   const response = await axios.get(`${API_BASE}/${id}`);
   return response.data;
 };
+
+export const postProductWishlist = async (id: any) => {
+  const response = await axios.post(`${API_BASE}/${id}/wishlist`);
+  return response.data;
+};
