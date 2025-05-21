@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function StockStatus({ stock }: any) {
+export default function StockStatus({ stock, hover }: any) {
   let status = "";
   let color = "";
 
@@ -14,5 +14,13 @@ export default function StockStatus({ stock }: any) {
     color = "text-green-600";
   }
 
-  return <p className={`text-sm font-medium ${color}`}>{status}</p>;
+  return (
+    <p
+      className={`relative text-sm font-medium z-30 ${
+        hover ? "text-white" : color
+      }`}
+    >
+      {status}
+    </p>
+  );
 }

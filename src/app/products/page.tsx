@@ -88,44 +88,49 @@ export default function Home() {
         />
       </Head>
 
-      <div className="mb-6 space-y-4">
-        <select
-          onChange={(e) => setSortBy(e.target.value as "newest" | "rating")}
-          className="w-full p-2 border rounded"
-        >
-          <option value="newest">Terbaru</option>
-          <option value="rating">Ulasan Terbaik</option>
-        </select>
+      <div className="grid grid-cols-12 gap-16">
+        <div className="mb-6 space-y-4 col-span-3">
+          <select
+            onChange={(e) => setSortBy(e.target.value as "newest" | "rating")}
+            className="w-full p-2 border rounded"
+          >
+            <option value="newest">Terbaru</option>
+            <option value="rating">Ulasan Terbaik</option>
+          </select>
 
-        <div className="flex gap-4">
-          <label className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              onChange={(e) =>
-                setFilters({ ...filters, minRating: e.target.checked ? 4 : 0 })
-              }
-              className="w-4 h-4"
-            />
-            Rating 4+
-          </label>
+          <div className="flex gap-4">
+            <label className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                onChange={(e) =>
+                  setFilters({
+                    ...filters,
+                    minRating: e.target.checked ? 4 : 0,
+                  })
+                }
+                className="w-4 h-4"
+              />
+              Rating 4+
+            </label>
 
-          <label className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              onChange={(e) =>
-                setFilters({ ...filters, inStock: e.target.checked })
-              }
-              className="w-4 h-4"
-            />
-            Stok Tersedia
-          </label>
+            <label className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                onChange={(e) =>
+                  setFilters({ ...filters, inStock: e.target.checked })
+                }
+                className="w-4 h-4"
+              />
+              Stok Tersedia
+            </label>
+          </div>
         </div>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredProducts.map((product) => (
-          <ProductCard key={product.id} product={product.attributes} />
-        ))}
+        <div className="col-span-9 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredProducts.map((product) => (
+            <ProductCard key={product.id} product={product.attributes} />
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ export default function RatingStars({ rating }: RatingStarsProps) {
         return (
           <svg
             key={index}
-            className={`w-5 h-5 ${
+            className={`w-4 h-4 ${
               starValue <= roundedRating
                 ? "text-yellow-400"
                 : starValue - 0.5 === roundedRating
