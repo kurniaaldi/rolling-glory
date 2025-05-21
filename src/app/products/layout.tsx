@@ -1,3 +1,4 @@
+import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { Metadata } from "next";
 import React, { ReactNode } from "react";
@@ -18,6 +19,7 @@ function Layout(props: Props) {
         {children}
         <div className="absolute bottom-0 left-0 h-1/2 main-layout w-full" />
       </main>
+      <Footer />
     </>
   );
 }
