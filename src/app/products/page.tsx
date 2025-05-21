@@ -1,8 +1,11 @@
-import Product from "@/modules/products";
+import ModuleProduct from "@/modules/products";
+import { getProducts } from "@/utils/api";
 import React from "react";
 
-function Page() {
-  return <Product />;
-}
+const Page = async () => {
+  const data = await getProducts();
+
+  return <ModuleProduct data={data.data} meta={data.meta} />;
+};
 
 export default Page;

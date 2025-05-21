@@ -2,31 +2,57 @@
 
 import { useEffect, useState } from "react";
 import ProductCard from "@/components/productCard";
-import { ApiResponse, Product } from "@/interface";
+import { Product } from "@/interface";
 
-export default function ModuleProduct() {
+interface Meta {
+  totalItems: number;
+  currentPage: number;
+  itemPerPage: number;
+  totalPages: number;
+}
+interface GiftAttributes {
+  id: number;
+  name: string;
+  info: string;
+  description: string;
+  points: number;
+  slug: string;
+  stock: number;
+  images: string[];
+  isNew: number;
+  rating: number;
+  numOfReviews: number;
+  isWishlist: number;
+}
+
+// Gift data object
+interface GiftData {
+  id: string;
+  type: string;
+  attributes: GiftAttributes;
+}
+
+// Full response structure
+
+interface ModuleProducts {
+  meta: Meta;
+  data: GiftData[];
+}
+
+export default function ModuleProduct({ data, meta }: ModuleProducts) {
   const [products, setProducts] = useState<Product[]>([]);
   const [sortBy, setSortBy] = useState<"newest" | "rating">("newest");
   const [filters, setFilters] = useState({
     minRating: 0,
     inStock: false,
   });
+  console.log(data, meta);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "http://recruitment.dev.rollingglory.com/api/v2/gifts?page[number]=1&page[size]=6",
-        );
-        const data: ApiResponse = await response.json();
-        setProducts(data.data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+    if (data) {
+      setProducts(data);
+    }
+  }, [data]);
 
   const sortProducts = (products: Product[], type: string) => {
     return [...products].sort((a, b) => {
