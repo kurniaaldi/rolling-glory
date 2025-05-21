@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { Raleway } from "next/font/google";
 import "./globals.css";
 
-const railway = Raleway({
-  variable: "--font-raleway-sans",
+const raleway = Raleway({
   subsets: ["latin"],
+  variable: "--font-raleway",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -19,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${railway.variable} antialiased`}>{children}</body>
+      <body className={`${raleway.className} antialiased`}>{children}</body>
     </html>
   );
 }
