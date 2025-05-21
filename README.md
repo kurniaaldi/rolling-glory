@@ -17,7 +17,7 @@ This application is built using **Next.js (App Router)** and **React 19**, with 
 - ✅ Wishlist functionality (add/remove)
 - ✅ Sort products (Newest, Rating)
 - ✅ Filter products (Rating 4+, In Stock)
-- ✅ SEO meta tags for product detail pages
+- ✅ SEO meta tags title, description & thumbnail for product detail pages
 - ✅ Responsive design for mobile & desktop
 - ✅ Server-side rendering for product detail (SEO optimized)
 
@@ -34,9 +34,39 @@ This application is built using **Next.js (App Router)** and **React 19**, with 
 
 ---
 
+## ✨ Design Adjustments & Additional Features
+
+Beberapa penyesuaian telah dilakukan dari desain awal agar lebih sesuai dengan struktur data dari API dan meningkatkan pengalaman pengguna:
+
+### 1. 🖼️ Image Carousel di Halaman Product Detail
+
+- Berdasarkan struktur data `images: string[]`, setiap produk dapat memiliki lebih dari satu gambar.
+- Untuk mengakomodasi ini, **carousel/slider component** ditambahkan di halaman detail produk agar user bisa melihat semua gambar produk dengan navigasi yang nyaman.
+- Fallback gambar juga ditambahkan jika `images` kosong atau tidak valid.
+
+### 2. 🔢 Pagination pada Product List
+
+- Data `meta` dari API (`currentPage`, `totalPages`, `totalItems`, dll.) digunakan untuk membangun kontrol pagination di halaman list.
+- Tombol `Prev`, `Next`, dan `Page Number` dibuat secara dinamis.
+- Komponen pagination sepenuhnya reusable dan disesuaikan dengan struktur `App Router` Next.js.
+
+---
+
+## 📈 SEO Strategy
+
+SEO telah dioptimalkan melalui:
+
+- ✅ **`generateMetadata` API bawaan Next.js 13+** untuk mendukung server-side rendering meta tags.
+- ✅ Tag meta seperti `og:title`, `og:description`, `og:image`, dan `og:url` ditambahkan secara dinamis di halaman detail produk.
+- ✅ Mendukung tampilan **thumbnail saat link dibagikan** di WhatsApp, Facebook, Twitter, dll.
+- ✅ Struktur semantic HTML digunakan (heading tags, sections).
+- ✅ Responsif dan mobile-first untuk pengalaman pengguna yang optimal di semua device.
+
+---
+
 ## ⚙️ Local Setup Instructions
 
-## Setup
+### Setup
 
 1. Clone repo
 2. `npm install`
