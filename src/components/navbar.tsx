@@ -24,7 +24,7 @@ export default function Navbar() {
       }`}
     >
       <Link href="/" className="navbar-brand">
-        <img src="./assets/logo.png" alt="Logo" />
+        <img src="/assets/logo.png" alt="Logo" />
       </Link>
     </nav>
   );

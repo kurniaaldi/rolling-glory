@@ -88,7 +88,7 @@ export default function ProductDetail() {
               </div>
 
               <div className="flex items-center gap-2">
-                <img src="./assets/point.svg" />
+                <img src="/assets/point-light.svg" className="w-5 h-5" />
                 <p className="text-2xl text-[#74B71B]">
                   {product?.attributes?.points} Poins
                 </p>
@@ -122,11 +122,11 @@ export default function ProductDetail() {
             <div className="w-full flex items-center gap-4 relative z-10">
               {product?.attributes?.isWishlist ? (
                 <div className="cursor-pointer z-30">
-                  <img src="./assets/like.svg" className="w-14" />
+                  <img src="/assets/like.svg" className="h-11" />
                 </div>
               ) : (
                 <div className="cursor-pointer z-30">
-                  <img src="./assets/unlike.svg" className="w-14" />
+                  <img src="/assets/unlike.svg" className="h-11" />
                 </div>
               )}
               <button
@@ -141,7 +141,7 @@ export default function ProductDetail() {
             </div>
           </div>
         </div>
-        <div className="h-full mt-10">
+        <div className="h-full mt-10 pb-10">
           <div className="h-12 w-40 border border-[#74B71B] border-b-4 border-t-0 border-l-0 border-r-0">
             <p className="text-base text-[#74B71B]">Info produk</p>
           </div>

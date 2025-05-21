@@ -25,7 +25,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     <div
       onMouseEnter={() => setHover(product.id)}
       onMouseLeave={() => setHover(null)}
-      className="relative overflow-hidden border border-[#D8D8D8] rounded-lg hover:shadow-lg transition-shadow min-w-[250px] h-[420px] p-5"
+      className="relative z-30 overflow-hidden border border-[#D8D8D8] rounded-lg hover:shadow-lg transition-shadow min-w-[250px] h-[420px] p-5"
     >
       {product.stock === 0 && (
         <div className="w-full h-full absolute bg-[#E1E8EE] top-0 left-0 opacity-75" />

@@ -10,11 +10,11 @@ export default function SpecialIcons(props: ISpecialIcons) {
 
   const type = () => {
     if (isNew && isBestSeller) {
-      return <img alt="hot" src="./assets/hot.svg" />;
+      return <img alt="hot" src="/assets/hot.svg" />;
     } else if (isBestSeller) {
-      return <img alt="best" src="./assets/best.svg" />;
+      return <img alt="best" src="/assets/best.svg" />;
     } else if (isNew) {
-      return <img alt="new" src="./assets/new.svg" />;
+      return <img alt="new" src="/assets/new.svg" />;
     } else {
       return;
     }
